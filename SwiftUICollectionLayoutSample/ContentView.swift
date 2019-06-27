@@ -36,25 +36,60 @@ private let cats: [String] = {
     return imageNames
 }()
 
+struct HeaderView: View {
+    @State var headerText: String
+
+    var body: some View {
+        HStack {
+            Text(headerText)
+                .padding(10)
+            }
+            .frame(width: UIScreen.main.bounds.width, height: 44, alignment: Alignment.leading)
+            .background(Color.gray)
+    }
+}
+
 struct ContentView : View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("Brand Names")
-                    .padding(10)
-            }
-                .frame(width: UIScreen.main.bounds.width, height: 44, alignment: Alignment.leading)
-                .background(Color.gray)
-            
-            ScrollView {
-                HStack {
-                    ForEach(brandNames.identified(by: \.self)) {
-                        Text("\($0)")
-                            .padding(10)
-                            .border(Color.black, width: 1, cornerRadius: 22)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                // MARK: - Brand Names Section
+                HeaderView(headerText: "Brand Names")
+                
+                ScrollView {
+                    HStack {
+                        ForEach(brandNames.identified(by: \.self)) {
+                            Text("\($0)")
+                                .padding(10)
+                                .border(Color.black, width: 1, cornerRadius: 22)
+                        }
                     }
+                }.padding(10)
+            
+                // MARK: - Cat Foods Section
+                HeaderView(headerText: "Cat Foods")
+                ScrollView {
+                    HStack {
+                        ForEach(catFoods.identified(by: \.self)) {
+                            Image($0)
+                                .resizable()
+                                .frame(width: UIScreen.main.bounds.width / 4, height: UIScreen.main.bounds.width / 4)
+                                .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
+                                .padding(10)
+                        }
+                    }
+                    }.padding(10)
+                
+                // MARK: - Cats Section
+                HeaderView(headerText: "Cats")
+                ForEach(cats.identified(by: \.self)) {
+                    Image($0)
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
+                        .padding(10)
                 }
-            }.padding(10)
+            }
         }
     }
 }
