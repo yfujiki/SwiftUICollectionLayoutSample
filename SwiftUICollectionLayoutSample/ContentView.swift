@@ -64,7 +64,10 @@ struct ContentView : View {
                                 .border(Color.black, width: 1, cornerRadius: 22)
                         }
                     }
-                }.padding(10)
+                    .padding(10)
+                }
+                    .frame(width: UIScreen.main.bounds.width, height: 64, alignment: .center)
+                
             
                 // MARK: - Cat Foods Section
                 HeaderView(headerText: "Cat Foods")
@@ -73,20 +76,20 @@ struct ContentView : View {
                         ForEach(catFoods.identified(by: \.self)) {
                             Image($0)
                                 .resizable()
-                                .frame(width: UIScreen.main.bounds.width / 4, height: UIScreen.main.bounds.width / 4)
-                                .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
-                                .padding(10)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: UIScreen.main.bounds.width / 2 - 40, height: 100)
+                                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                         }
-                    }
                     }.padding(10)
+                }
+                    .frame(width: UIScreen.main.bounds.width, height: 120, alignment: .center)
                 
                 // MARK: - Cats Section
                 HeaderView(headerText: "Cats")
                 ForEach(cats.identified(by: \.self)) {
                     Image($0)
                         .resizable()
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-                        .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
+                        .frame(width: UIScreen.main.bounds.width - 20, height: (UIScreen.main.bounds.width - 20) * 0.67)
                         .padding(10)
                 }
             }
