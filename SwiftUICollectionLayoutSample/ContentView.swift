@@ -36,12 +36,14 @@ private let cats: [String] = {
     return imageNames
 }()
 
+// MARK: - Header View
 struct HeaderView: View {
     @State var headerText: String
 
     var body: some View {
         HStack {
             Text(headerText)
+                .color(.white)
                 .padding(10)
             }
             .frame(width: UIScreen.main.bounds.width, height: 44, alignment: Alignment.leading)
@@ -51,27 +53,28 @@ struct HeaderView: View {
 
 struct ContentView : View {
     var body: some View {
-        ScrollView {
+        ScrollView{
             VStack(alignment: .leading, spacing: 16) {
                 // MARK: - Brand Names Section
                 HeaderView(headerText: "Brand Names")
                 
-                ScrollView {
+                ScrollView(showsHorizontalIndicator: false) {
                     HStack {
                         ForEach(brandNames.identified(by: \.self)) {
                             Text("\($0)")
+                                .frame(width: UIScreen.main.bounds.width / 3 - 30)
                                 .padding(10)
                                 .border(Color.black, width: 1, cornerRadius: 22)
                         }
                     }
                     .padding(10)
                 }
-                    .frame(width: UIScreen.main.bounds.width, height: 64, alignment: .center)
+                    .frame(height: 64)
                 
             
                 // MARK: - Cat Foods Section
                 HeaderView(headerText: "Cat Foods")
-                ScrollView {
+                ScrollView(showsHorizontalIndicator: false) {
                     HStack {
                         ForEach(catFoods.identified(by: \.self)) {
                             Image($0)
@@ -82,7 +85,7 @@ struct ContentView : View {
                         }
                     }.padding(10)
                 }
-                    .frame(width: UIScreen.main.bounds.width, height: 120, alignment: .center)
+                    .frame(height: 120)
                 
                 // MARK: - Cats Section
                 HeaderView(headerText: "Cats")
