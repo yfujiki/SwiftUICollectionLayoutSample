@@ -93,6 +93,7 @@ struct ContentView : View {
                     Image($0)
                         .resizable()
                         .frame(width: UIScreen.main.bounds.width - 20, height: (UIScreen.main.bounds.width - 20) * 0.67)
+                        .cornerRadius(10)
                         .padding(10)
                 }
             }
