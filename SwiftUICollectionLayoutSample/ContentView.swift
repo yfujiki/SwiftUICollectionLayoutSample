@@ -92,9 +92,10 @@ struct ContentView : View {
                 ForEach(cats.identified(by: \.self)) {
                     Image($0)
                         .resizable()
+                        .aspectRatio(contentMode: .fit)
                         .frame(width: UIScreen.main.bounds.width - 20, height: (UIScreen.main.bounds.width - 20) * 0.67)
                         .cornerRadius(10)
-                        .padding(10)
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 }
             }
         }
